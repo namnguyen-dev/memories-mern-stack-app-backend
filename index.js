@@ -3,12 +3,16 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 dotenv.config();
+import postsRoutes from './routes/posts.js';
 
 const app = express();
 
 app.use(express.json({ limit: '30mb', extended: true }));
 app.use(express.urlencoded({ limit: '30mb', extended: true }));
 app.use(cors());
+
+// use routes
+app.use('/posts', postsRoutes);
 
 const PORT = process.env.PORT || 4000;
 
@@ -29,4 +33,3 @@ mongoose
     console.log('MongoDB error');
     console.log(err.message);
   });
-   
